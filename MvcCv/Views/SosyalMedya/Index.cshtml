@@ -1,0 +1,131 @@
+﻿
+@using MvcCv.Models.Entity
+@model List<TblSosyalMedya>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string durum = "";
+}
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body" style="background-color:lightgrey">
+
+                                @if (Model != null && Model.Any())
+                                {
+                                    <div class="alert alert-warning" role="alert">
+                                        <b>
+                                            Toplam <strong>@Model.Count()</strong> Sosyal Medya Hesabı bulumaktadır.
+                                        </b>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        Kayıtlı Sosyal Medya Hesabı  Bulunmuyor!
+                                    </div>
+                                }
+                                <br />
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Sosyal Medya Hesab Listesi</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#Modal1">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
+                                            Yeni Sosyal Medya Hesabı Ekle
+                                        </button>
+                                    </div>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Sosyal Medya</th>
+                                                <th>Durum</th>
+                                                <th>Pasif</th>
+                                                <th>Düzenle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (@item.Durum == true)
+                                                {
+                                                    durum = "Aktif";
+                                                }
+                                                else
+                                                {
+                                                    durum = "Pasif";
+
+
+                                                }
+                                                <tr>
+                                                    <td>@item.ID</td>
+                                                    <td>@item.Ad</td>
+                                                    <td>@durum</td>
+                                                    <td>
+                                                        <a class="btn btn-danger btn-sm" href="/SosyalMedya/Sil/@item.ID">
+                                                            <i class="icon-off"></i>&nbsp;&nbsp;
+                                                            Pasif'e Al
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-sm" href="/SosyalMedya/SayfaGetir/@item.ID">
+                                                            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;
+                                                            Düzenle
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="Modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Sosyal Medya Ekleme Penceresi</h2>
+                    </div>
+                    <form action="/SosyalMedya/Ekle" method="post">
+
+                        <label>&nbsp;Sosyal Medya İsmi</label>
+                        <input type="text" name="Ad" class="form-control" />
+
+                        <label>&nbsp;Sosyal Medya Linki</label>
+                        <input type="text" name="Link" class="form-control" />
+
+                        <label>&nbsp;İkon Değeri</label>
+                        <input type="text" name="ikon" class="form-control" />
+                        <br />
+                        <br />
+                        &nbsp;
+                        <button class="btn btn-primary">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Kaydet
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

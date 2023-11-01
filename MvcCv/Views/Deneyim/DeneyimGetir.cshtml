@@ -1,0 +1,42 @@
+﻿@model  MvcCv.Models.Entity.TblDeneyimlerim
+@{
+    ViewBag.Title = "DeneyimGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<br />
+<h4>Deneyim Güncelleme Sayfası</h4>
+<br />
+
+
+<form method="post">
+
+    @Html.HiddenFor(x => x.ID)
+    <br />
+
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("AltBaşlık")
+    @Html.TextBoxFor(x => x.AltBaslik, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control", rows = 5 })
+    <br />
+
+    <button class="btn btn-info">
+        <i class="fa fa-file-text" aria-hidden="true"></i>
+        Güncelle
+    </button>
+
+    <a href="/Deneyim/Index/" class="btn btn-outline-info" style="float:right">
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        Deneyim Sayfasına Geri Dön
+    </a>
+</form>

@@ -1,0 +1,49 @@
+﻿@model MvcCv.Models.Entity.TblSertifikalarım
+@{
+    ViewBag.Title = "SertifikaGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h4>Sertifika Düzenleme Sayfası</h4>
+<br />
+
+
+<link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<form method="post">
+
+    @Html.Label("Açıklama")
+    @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Resim Adresi")
+    @Html.TextBoxFor(x => x.Resim, new { @class = "form-control" })
+    <br />
+
+
+    <button class="btn btn-success">
+        <i class="fa fa-file-text" aria-hidden="true"></i>
+        Güncelle
+    </button>
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    <a href="/Sertifika/SertifikaSil/@ViewBag.d" class="btn btn-danger">
+        <i class="fas fa-trash"></i>
+        Sil
+    </a>
+
+    <a href="/Sertifika/Index/" class="btn btn-outline-info" style="float:right">
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        Sertifika Sayfasına Geri Dön
+    </a>
+
+</form>

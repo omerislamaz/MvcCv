@@ -1,0 +1,82 @@
+﻿@using MvcCv.Models.Entity
+@model List<TblDeneyimlerim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body" style="background-color:lightgrey">
+                            @if (Model != null && Model.Any())
+                            {
+                                <div class="alert alert-warning" role="alert">
+                                    <b>
+                                        Toplam <strong>@Model.Count()</strong> Deneyim bulumaktadır.
+                                    </b>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger">
+                                    Kayıtlı Deneyim    Bulunmuyor!
+                                </div>
+                            }
+                            <br />
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Deneyim Listesi</h3>
+                                </div>
+                                <div class="card-body">
+                                    <a href="/Deneyim/DeneyimEkle/" class="btn btn-info">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
+                                        Yeni Deneyim Ekle
+                                    </a>
+                                </div>
+                                <table class=" table table-bordered">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Başlık</th>
+                                        <th>AltBaşlık</th>
+                                        <th>Tarih</th>
+                                        <th>Sil</th>
+                                        <th>Düzenle</th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.ID</td>
+                                            <td>@item.Baslik</td>
+                                            <td>@item.AltBaslik</td>
+                                            <td>@item.Tarih</td>
+                                            <td>
+                                                <a href="/Deneyim/DeneyimSil/@item.ID" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                    Sil
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/Deneyim/DeneyimGetir/@item.ID" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                    Düzenle
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿@using MvcCv.Models.Entity
+@model List<TblEgitimlerim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body" style="background-color:lightgrey">
+
+                            @if (Model != null && Model.Any())
+                            {
+                                <div class="alert alert-warning" role="alert">
+                                    <b>
+                                        Toplam <strong>@Model.Count()</strong> Eğitim bulumaktadır.
+                                    </b>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger">
+                                    Kayıtlı Eğitim    Bulunmuyor!
+                                </div>
+                            }
+                            <br />
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Eğitim Listesi</h3>
+                                </div>
+                                <div class="card-body">
+                                    <a href="/Egitim/EgitimEkle/" class="btn btn-info">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
+                                        Yeni Eğitim Bilgisi Ekle
+                                    </a>
+                                    <br />
+                                    <br />
+                                    <table class=" table table-bordered">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Başlık</th>
+                                            <th>AltBaşlık 1</th>
+                                            <th>AltBaşlık 2</th>
+                                            <th>GNO</th>
+                                            <th>Tarih</th>
+                                            <th>Sil</th>
+                                            <th>Düzenle</th>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.ID</td>
+                                                <td>@item.Baslik</td>
+                                                <td>@item.AltBaslik1</td>
+                                                <td>@item.AltBaslik2</td>
+                                                <td>@item.GNO</td>
+                                                <td>@item.Tarih</td>
+
+                                                <td>
+                                                    <a class="btn btn-danger btn-sm" href="/Egitim/EgitimSil/@item.ID">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Sil
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" href="/Egitim/EgitimDuzenle/@item.ID">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Düzenle
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
