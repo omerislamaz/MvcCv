@@ -8,9 +8,13 @@ Kişisel Cv Sitesidir. Proje dinamik olarak çalışmakta ve 3 ayrı panele sahi
 * Repository Design Pattern
 * Fluent Validation
 * Entity Framework
+* LinQ Expression
 * Model
 * Ms SQL
 * Bootstrap Alert
+* Login - LogOut
+* Authorize Attribute
+* Popup Modal 
   
 
 
